@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    image: liftit_user_umbrella:v1
+    build: .
+    command: mix phx.server
+    volumes:
+      - .:/liftit_user_umbrella
+    ports:
+      - "4000:4000"
+    env_file: .env
+    depends_on:
+      - db
+    links:
+      - db:db
+  db:
+    image: postgres:9.6
+    volumes:
+      - ./.data/postgres:/var/lib/postgresql/data

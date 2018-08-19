@@ -11,9 +11,21 @@ services:
     env_file: .env
     depends_on:
       - db
+      - rabbitmq
     links:
       - db:db
+      - rabbitmq:rabbitmq
+
   db:
     image: postgres:9.6
     volumes:
       - ./.data/postgres:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - ./.data/rabbitmq:/var/lib/rabbitmq
+      - ./conf/myrabbit.conf:/etc/rabbitmq/rabbitmq.conf

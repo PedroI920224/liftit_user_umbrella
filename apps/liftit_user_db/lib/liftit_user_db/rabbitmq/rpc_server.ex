@@ -1,4 +1,4 @@
-defmodule RabbitmqRpcServer do
+defmodule Rabbitmq.RpcServer do
 
   def call do
     {:ok, connection} = AMQP.Connection.open(host: "rabbitmq")
@@ -7,7 +7,7 @@ defmodule RabbitmqRpcServer do
     AMQP.Basic.qos(channel, prefetch_count: 1)
     AMQP.Basic.consume(channel, "rpc_queue")
     IO.puts " [x] Awaiting RPC requests"
-    RabbitmqRpcServer.wait_for_messages(channel)
+    Rabbitmq.RpcServer.wait_for_messages(channel)
   end
 
   def wait_for_messages(channel) do
@@ -28,4 +28,4 @@ defmodule RabbitmqRpcServer do
     end
   end
 end
-RabbitmqRpcServer.call
+Rabbitmq.RpcServer.call

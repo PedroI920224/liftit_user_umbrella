@@ -24,4 +24,7 @@ erl_crash.dump
  *.sql
 
 .data/*
-.data/postgres/
+log/*
+apps/liftit_user_db/log/*
+apps/liftit_user_web/log/*
+

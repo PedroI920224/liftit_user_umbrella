@@ -23,7 +23,7 @@ defmodule LiftitUserWeb.Mixfile do
   def application do
     [
       mod: {LiftitUserWeb, []},
-      extra_applications: [:logger]
+      extra_applications: [:logger, :amqp]
     ]
   end
 
@@ -41,7 +41,10 @@ defmodule LiftitUserWeb.Mixfile do
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:phoenix_haml, "~> 0.2"},
+      {:amqp, "~> 1.0"},
+      {:poison, "~> 3.1"}
     ]
   end
 end

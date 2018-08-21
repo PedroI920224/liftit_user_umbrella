@@ -14,11 +14,33 @@ defmodule LiftitUserWeb.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
+    user_encoding = Poison.encode!(user_params)
+
+    response = LiftitUserWeb.Rabbitmq.RpcClient.call(user_encoding)
+    IO.puts "controlleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeecontrolleeeerreeeeeee"
+    IO.inspect response
+    IO.puts "controlleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeecontrolleeeerreeeeeee"
+    case response do
+      {:ok, user} ->
+        conn
+        |> put_flash(:info, "User Created succesfully")
+        |> redirect(to: user_path(conn, :show, user))
+      {:error, message} ->
+        conn
+        |> put_flash(:error, message)
+        |> render(conn, "new.html", changeset: %{})
+    end
+
+  end
+
+  def show(conn, %{"id" => id}) do
+  # user = Repo.get!(User, id)
+  # render(conn, "show.html", user: user)
   # changeset = User.changeset(%User{}, user_params)
-    changeset = %{}
+  # changeset = %{}
   # IO.puts user_params[:address]
 
-    render(conn, "new.html", changeset: changeset)
+  # render(conn, "new.html", changeset: changeset)
   # case Repo.insert(changeset) do
   #   {:ok, user} ->
   #     conn
@@ -33,8 +55,4 @@ defmodule LiftitUserWeb.UserController do
     user = Repo.get!(User, id)
     render(conn, "show.html", user: user)
   end
-
- #defmodule User do
- #  defstruct [:name, :email, :password, :confirmed, :phone_number, :country, :city, :address]
- #end 
 end

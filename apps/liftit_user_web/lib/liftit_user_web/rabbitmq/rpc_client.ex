@@ -2,14 +2,13 @@ defmodule LiftitUserWeb.Rabbitmq.RpcClient do
   def wait_for_messages(_channel, correlation_id) do
     receive do
       {:basic_deliver, payload, %{correlation_id: ^correlation_id}} ->
-       IO.puts "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
         term_payload = :erlang.binary_to_term(payload)
-       IO.puts "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
-        {status, _body} = term_payload
-       IO.puts "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-       IO.puts to_string(status)
-       IO.puts "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
-       #term_payload
+        {status, body} = term_payload
+        IO.puts "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        IO.puts to_string(status)
+        IO.puts to_string(body)
+        IO.puts "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
+        term_payload
     end
   end
   def call(user_data) do

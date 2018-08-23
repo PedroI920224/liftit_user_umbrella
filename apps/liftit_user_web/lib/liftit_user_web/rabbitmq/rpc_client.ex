@@ -6,7 +6,8 @@ defmodule LiftitUserWeb.Rabbitmq.RpcClient do
         {status, body} = term_payload
         IO.puts "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         IO.puts to_string(status)
-        IO.puts to_string(body)
+        IO.puts "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
+        IO.inspect body
         IO.puts "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
         term_payload
     end

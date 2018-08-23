@@ -6,7 +6,8 @@ defmodule LiftitUserWeb.Rabbitmq.RpcClient do
         {status, body} = term_payload
         IO.puts "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
         IO.puts to_string(status)
-        IO.puts to_string(body)
+        IO.puts "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
+        IO.inspect body
         IO.puts "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
         term_payload
     end
@@ -35,9 +36,3 @@ defmodule LiftitUserWeb.Rabbitmq.RpcClient do
     LiftitUserWeb.Rabbitmq.RpcClient.wait_for_messages(channel, correlation_id)
   end
 end
-
-user = Poison.encode!(%{"age" => 27, "name" => "Devin Torres"})
-
-IO.puts " [x] Requesting user data: #{user}"
-response = LiftitUserWeb.Rabbitmq.RpcClient.call(user)
-IO.puts " [.] Got #{response}"

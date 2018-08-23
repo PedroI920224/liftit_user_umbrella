@@ -2,7 +2,7 @@ defmodule LiftitUserDb.Models.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "user" do
+  schema "users" do
     field :name     # Defaults to type :string
     field :email
     field :password
@@ -11,6 +11,7 @@ defmodule LiftitUserDb.Models.User do
     field :country
     field :city
     field :address
+    timestamps
   end
 
   def changeset(user, params \\ %{}) do

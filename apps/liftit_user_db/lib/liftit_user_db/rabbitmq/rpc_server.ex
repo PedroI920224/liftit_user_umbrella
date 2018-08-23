@@ -25,4 +25,3 @@ defmodule LiftitUserDb.Rabbitmq.RpcServer do
     end
   end
 end
-LiftitUserDb.Rabbitmq.RpcServer.call

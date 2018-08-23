@@ -3,7 +3,7 @@ services:
   web:
     image: liftit_user_umbrella:v1
     build: .
-    command: mix phx.server
+    command: ./runner.sh
     volumes:
       - .:/liftit_user_umbrella
     ports:
@@ -23,6 +23,8 @@ services:
 
   rabbitmq:
     image: rabbitmq
+    ports:
+      - "5672:5672"
     volumes:
       - ./.data/rabbitmq:/var/lib/rabbitmq
       - ./conf/myrabbit.conf:/etc/rabbitmq/rabbitmq.conf

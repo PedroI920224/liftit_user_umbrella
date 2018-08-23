@@ -35,9 +35,3 @@ defmodule LiftitUserWeb.Rabbitmq.RpcClient do
     LiftitUserWeb.Rabbitmq.RpcClient.wait_for_messages(channel, correlation_id)
   end
 end
-
-user = Poison.encode!(%{"age" => 27, "name" => "Devin Torres"})
-
-IO.puts " [x] Requesting user data: #{user}"
-response = LiftitUserWeb.Rabbitmq.RpcClient.call(user)
-IO.puts " [.] Got #{response}"

@@ -16,20 +16,16 @@ defmodule LiftitUserWeb.UserController do
   def create(conn, %{"user" => user_params}) do
     user_encoding = Poison.encode!(user_params)
     response = LiftitUserWeb.Rabbitmq.RpcClient.call(user_encoding)
-    IO.puts "controlleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeecontrolleeeerreeeeeee"
-    IO.inspect response
-    IO.puts "controlleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeecontrolleeeerreeeeeee"
     case response do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User Created succesfully")
-        |> redirect(to: user_path(conn, :show, user))
+        |> render("show.json", user: user)
       {:error, message} ->
         conn
         |> put_flash(:error, message)
         |> render("new.html", changeset: %{})
     end
-
   end
 
   def show(conn, %{"id" => id}) do

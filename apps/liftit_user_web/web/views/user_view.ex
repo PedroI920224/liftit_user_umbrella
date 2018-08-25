@@ -10,4 +10,12 @@ defmodule LiftitUserWeb.UserView do
       address: user.address
     }
   end
+
+  def render("error.json", %{error: error}) do
+    %{
+      error: error,
+      advise: "please, to try again create an user redirect to http://localhost:4000/user/new"
+    }
+  end
+
 end

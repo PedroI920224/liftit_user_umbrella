@@ -24,7 +24,7 @@ defmodule LiftitUserWeb.UserController do
       {:error, message} ->
         conn
         |> put_flash(:error, message)
-        |> render("new.html", changeset: %{})
+        |> render("error.json", error: message)
     end
   end
 
@@ -48,10 +48,5 @@ defmodule LiftitUserWeb.UserController do
   #   {:error, changeset} ->
   #     render(conn, "new.html", changeset: changeset)
   # end
-  end
-
-  def show(conn, %{"id" => id}) do
-    user = Repo.get!(User, id)
-    render(conn, "show.html", user: user)
   end
 end

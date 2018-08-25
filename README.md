@@ -64,3 +64,5 @@ curl -i -X POST http://localhost:4000/users \
 -H 'Content-Type: application/json' \
 -d '{"user":{ "address": "Av siempre", "city": "Springf", "confirmed": true, "country": "EEUU", "email": "el_barto2@outlook.com", "name": "Bart2 Simpson", "password": "yonofui2", "phone_number": "031-123456" }}'
 ```
+* visiting the view:
+another way to create an user is visiting **http://localhost:4000/users/new** and fill all the fields

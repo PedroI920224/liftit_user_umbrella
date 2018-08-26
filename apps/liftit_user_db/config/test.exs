@@ -5,4 +5,6 @@ config :liftit_user_db, LiftitUserDb.Repo,
   database: "liftit_user_db_test",
   username: "postgres",
   password: "",
-  hostname: "db"
+  hostname: "db",
+  poolsize: 1,
+  pool: Ecto.Adapters.SQL.Sandbox

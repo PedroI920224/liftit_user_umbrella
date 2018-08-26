@@ -1,5 +1,4 @@
 defmodule Models.UserTest do
-  require IEx
   use ExUnit.Case
   alias LiftitUserDb.Models.User
 

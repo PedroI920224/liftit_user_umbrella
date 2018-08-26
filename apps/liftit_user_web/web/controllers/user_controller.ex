@@ -23,6 +23,7 @@ defmodule LiftitUserWeb.UserController do
         |> render("show.json", user: user)
       {:error, message} ->
         conn
+        |> put_status(400)
         |> put_flash(:error, message)
         |> render("error.json", error: message)
     end

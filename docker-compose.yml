@@ -1,6 +1,6 @@
 version: '3'
 services:
-  web:
+  umbrella:
     image: liftit_user_umbrella:v1
     build: .
     command: ./runner.sh

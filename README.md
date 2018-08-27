@@ -57,13 +57,23 @@ this should be return a successfull status code 200 and a response:
   "country":"EEUU",
   "address":"Av siempre"
 }
-
 ```
 * With curl:
 ```ruby
-curl -i -X POST http://localhost:4000/users \
+curl -X POST http://localhost:4000/users \
 -H 'Content-Type: application/json' \
 -d '{"user":{ "address": "Av siempre", "city": "Springf", "confirmed": true, "country": "EEUU", "email": "el_barto2@outlook.com", "name": "Bart2 Simpson", "password": "yonofui2", "password_hash":"yonofui2", "phone_number": "031-123456" }}'
 ```
 * visiting the view:
 another way to create an user is visiting **http://localhost:4000/users/new** and fill all the fields
+
+
+## References
+* wait bash service https://github.com/vishnubob/wait-for-it
+* Ecto to database https://elixirschool.com/en/lessons/specifics/ecto/
+* encrypt password https://github.com/riverrun/comeonin
+* rabbitmq like RPC https://www.rabbitmq.com/tutorials/tutorial-six-elixir.html
+* testing validation https://medium.com/@diamondgfx/testing-validations-in-elixir-and-ecto-677bd8a071a1
+* umbrella projects https://elixir-lang.org/getting-started/mix-otp/dependencies-and-umbrella-projects.html
+* remove data-base in test environment http://www.johnpdaigle.com/complexable/2016/03/05/resetting-a-test-database-with-ecto.html
+* bootcamp elixir  https://www.udemy.com/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/

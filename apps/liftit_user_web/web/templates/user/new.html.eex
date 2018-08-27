@@ -19,6 +19,12 @@
   </div>
 
   <div class="form-group">
+    <%= label f, :password_confirmation, class: "control-label" %>
+    <%= password_input f, :password_hash, class: "form-control" %>
+    <%= error_tag f, :password %>
+  </div>
+
+  <div class="form-group">
     <%= label f, :confirmed, class: "control-label" %>
     <%= checkbox f, :confirmed, class: "checkbox" %>
     <%= error_tag f, :confirmed %>

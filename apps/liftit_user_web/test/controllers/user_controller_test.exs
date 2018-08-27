@@ -14,26 +14,21 @@ defmodule LiftitUserWeb.UserControllerTest do
     assert html_response(conn, 200) =~ "New user"
   end
 
-  test "creates resource and redirects when data is valid", %{conn: conn} do
-    conn = post conn, user_path(conn, :create), user: @valid_attrs
-   #user = Repo.get_by!(User, @valid_attrs)
-   #assert redirected_to(conn) == user_path(conn, :show, user.id)
-  end
-
-  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, user_path(conn, :create), user: @invalid_attrs
-    assert html_response(conn, 200) =~ "New user"
-  end
-
- #test "shows chosen resource", %{conn: conn} do
- #  user = Repo.insert! %User{}
- #  conn = get conn, user_path(conn, :show, user)
- #  assert html_response(conn, 200) =~ "Show user"
+ #test "creates resource and redirects when data is valid", %{conn: conn} do
+ #  conn = post conn, user_path(conn, :create), user: @valid_attrs
+ # #user = Repo.get_by!(User, @valid_attrs)
+ # #assert redirected_to(conn) == user_path(conn, :show, user.id)
  #end
 
-  test "renders page not found when id is nonexistent", %{conn: conn} do
-    assert_error_sent 404, fn ->
-      get conn, user_path(conn, :show, -1)
-    end
+  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
+    response = [" Name can't be blank", "Email can't be blank", "Password can't be blank", "Confirm Password can't be blank",
+      "Phone Number can't be blank"]
+
+    conn = build_conn
+     |> post("/users", user: @invalid_attrs)
+    body = conn |> response(400) |> Poison.decode!
+
+   assert body["errors"] == response
   end
+
 end

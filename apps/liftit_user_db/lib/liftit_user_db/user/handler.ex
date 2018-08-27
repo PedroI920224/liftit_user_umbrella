@@ -4,12 +4,20 @@ defmodule LiftitUserDb.User.Handler do
 
   def try_saved_data(user_data) do
     user = Poison.decode!(user_data)
+    IO.puts "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+    IO.puts "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+    IO.inspect user
+    IO.puts "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+    IO.puts "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
     changeset = User.changeset(%User{}, user)
+    IO.puts "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
+    IO.inspect changeset
+    IO.puts "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
     {status, body} = LiftitUserDb.Repo.insert(changeset)
-    IO.puts "Hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhannnnnnnnnnnnnnnnddddddddddddllllllllllllllllllleeeeeeeeeeeeerrrrrrrrrrr"
-    IO.inspect parser_errors(body.errors)
-    IO.puts "Hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhannnnnnnnnnnnnnnnddddddddddddllllllllllllllllllleeeeeeeeeeeeerrrrrrrrrrr"
-    IO.puts "Hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhannnnnnnnnnnnnnnnddddddddddddllllllllllllllllllleeeeeeeeeeeeerrrrrrrrrrr"
+    IO.puts "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"
+    IO.inspect status
+    IO.inspect body
+    IO.puts "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"
     case status do
       :ok -> {status, body}
       :error -> {status, parser_errors(body.errors)}

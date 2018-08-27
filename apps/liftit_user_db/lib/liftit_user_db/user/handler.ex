@@ -7,12 +7,12 @@ defmodule LiftitUserDb.User.Handler do
     changeset = User.changeset(%User{}, user)
     {status, body} = LiftitUserDb.Repo.insert(changeset)
     IO.puts "Hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhannnnnnnnnnnnnnnnddddddddddddllllllllllllllllllleeeeeeeeeeeeerrrrrrrrrrr"
-    IO.inspect body.errors
+    IO.inspect parser_errors(body.errors)
     IO.puts "Hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhannnnnnnnnnnnnnnnddddddddddddllllllllllllllllllleeeeeeeeeeeeerrrrrrrrrrr"
     IO.puts "Hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhannnnnnnnnnnnnnnnddddddddddddllllllllllllllllllleeeeeeeeeeeeerrrrrrrrrrr"
     case status do
       :ok -> {status, body}
-      :error -> {status, "Invalid Params maybe name, email or password"}
+      :error -> {status, parser_errors(body.errors)}
     end
   end
 

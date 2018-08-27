@@ -18,15 +18,15 @@ Some concepts very useful to understand how it runs are:
 
 ### To update the database run:
  ```bash 
-sudo docker-compose run web mix ecto.create
-sudo docker-compose run web mix ecto.migrate
-sudo docker-compose run web MIX_ENV=test mix ecto.create
-sudo docker-compose run web MIX_ENV=test mix ecto.migrate
+sudo docker-compose run umbrella mix ecto.create
+sudo docker-compose run umbrella mix ecto.migrate
+sudo docker-compose run umbrella MIX_ENV=test mix ecto.create
+sudo docker-compose run umbrella MIX_ENV=test mix ecto.migrate
 ```
 
 ### How to run the test suite
 To run the test suite is necessary run:
-* ```sudo docker-compose run web mix test```
+* ```sudo docker-compose run umbrella mix test```
 
 ### Deployment instructions
 create user endpoint:

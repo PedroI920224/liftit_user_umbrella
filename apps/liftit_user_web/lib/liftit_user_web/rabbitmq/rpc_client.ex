@@ -4,11 +4,6 @@ defmodule LiftitUserWeb.Rabbitmq.RpcClient do
       {:basic_deliver, payload, %{correlation_id: ^correlation_id}} ->
         term_payload = :erlang.binary_to_term(payload)
         {status, body} = term_payload
-        IO.puts "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-        IO.puts to_string(status)
-        IO.puts "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
-        IO.inspect body
-        IO.puts "ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
         term_payload
     end
   end
@@ -32,7 +27,6 @@ defmodule LiftitUserWeb.Rabbitmq.RpcClient do
     AMQP.Basic.publish(channel, "", "rpc_queue", user_data,
       reply_to: queue_name, correlation_id: correlation_id)
 
-    IO.puts "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
     LiftitUserWeb.Rabbitmq.RpcClient.wait_for_messages(channel, correlation_id)
   end
 end

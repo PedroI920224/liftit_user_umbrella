@@ -20,10 +20,6 @@ defmodule LiftitUserWeb.Rabbitmq.RpcClient do
       |> :erlang.integer_to_binary
       |> Base.encode64
 
-    IO.puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    IO.puts user_data
-    IO.puts user_data
-    IO.puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     AMQP.Basic.publish(channel, "", "rpc_queue", user_data,
       reply_to: queue_name, correlation_id: correlation_id)
 

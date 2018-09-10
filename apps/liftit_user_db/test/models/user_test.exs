@@ -1,6 +1,12 @@
+Ecto.Adapters.SQL.Sandbox.mode(LiftitUserDb.Repo, :manual)
+
 defmodule Models.UserTest do
   use ExUnit.Case
   alias LiftitUserDb.Models.User
+
+  setup do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(LiftitUserDb.Repo)
+  end
 
   @valid_attrs %{address: "Av siempre viva 123", city: "Springfield", confirmed: true, country: "EEUU",
     email: "el_barto166@outlook.com", name: "Bart Simpson", password: "yonofui", password_hash: "yonofui", phone_number: "031-123456"}
@@ -38,9 +44,9 @@ defmodule Models.UserTest do
 
   test "changeset is invalid if email is used already" do
 
-   #%User{}
-   #|> User.changeset(@valid_attrs)
-   #|> LiftitUserDb.Repo.insert!
+    %User{}
+    |> User.changeset(@valid_attrs)
+    |> LiftitUserDb.Repo.insert!
 
     user2 =
       %User{}
